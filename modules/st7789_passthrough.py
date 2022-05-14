@@ -5,7 +5,7 @@ import framebuf
 import gc
 import micropython
 import uasyncio as asyncio
-from drivers.boolpalette import BoolPalette
+from boolpalette import BoolPalette
 from tidal import display as tidal_display
 
 # User orientation constants

@@ -1,7 +1,5 @@
-from app import App
-from scheduler import get_scheduler
+from uguiapp import UguiApp
 
-import hardware_setup
 from gui.core.ugui import Screen, ssd
 
 from gui.widgets import Label, Button, CloseButton
@@ -27,18 +25,5 @@ class BaseScreen(Screen):
         Button(wri, row, col, text='No', callback=my_callback, args=('No',))
         CloseButton(wri)
 
-class uGUIDemo(App):
-
-    def on_start(self):
-        super().on_start()
-        get_scheduler().set_sleep_enabled(False)
-        Screen.change(BaseScreen)
-
-    def on_activate(self):
-        super().on_activate()
-
-    def update(self):
-        return
-
-    def on_deactivate(self):
-        return
+class uGUIDemo(UguiApp):
+    ROOT_SCREEN = ListboxScreen
