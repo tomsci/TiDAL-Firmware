@@ -50,7 +50,7 @@ class App:
     def on_deactivate(self):
         self._is_active = False
 
-    def on_idle(self):
+    def on_tick(self):
         # Only for things that need scheduler hooks, like UguiApp
         pass
 

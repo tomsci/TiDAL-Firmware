@@ -54,4 +54,4 @@ include("$(MPY_DIR)/extmod/webrepl/manifest.py")
 include("$(MPY_DIR)/drivers/neopixel/manifest.py")
 
 freeze("$(MPY_DIR)/../micropython-micro-gui/drivers", "boolpalette.py")
-freeze("$(MPY_DIR)/../micropython-micro-gui", "gui")
+freeze("$(MPY_DIR)/../micropython-micro-gui", ("gui/core", "gui/primitives", "gui/fonts", "gui/widgets"))

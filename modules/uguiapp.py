@@ -11,19 +11,12 @@ _ugui_core.ssd = hardware_setup.ssd
 
 from gui.core.ugui import Screen, ssd
 
-class _DummyScreen:
-    tasks = []
-    def on_hide(self):
-        pass
-
 class UguiWindow:
     def __init__(self, screen_cls):
-        # We assume Screen.current_screen should be null here
-        # Setting a dummy screen here prevents Screen.change() from starting the uasyncio event loop
-        Screen.current_screen = _DummyScreen()
+        # We assume Screen.current_screen should be null here.
+        # This sequence of calls carefully avoids provoking ugui to creating any asyncio tasks
+        Screen.do_gc = False
         self.root_screen = screen_cls()
-        # And undo all that
-        self.root_screen.parent = None
         Screen.current_screen = None
 
         buttons = Buttons()
@@ -53,7 +46,7 @@ class UguiApp(App):
         self.push_window(window, activate=False)
 
     def on_activate(self):
-        Screen.current_screen = self.window.root_screen
+        Screen.current_screen = self.window.current_screen
         super().on_activate()
 
     def on_deactivate(self):
@@ -61,6 +54,9 @@ class UguiApp(App):
         self.current_screen = Screen.current_screen
         Screen.current_screen = None
 
-    def on_idle(self):
-        Screen.show(False)
-        ssd.show()
+    def on_tick(self):
+        # print("tick")
+        if len(self.windows) == 1:
+            # ie we haven't pushed a textwindow on top of the UguiWindow, or anything
+            Screen.show(False)
+            ssd.show()
