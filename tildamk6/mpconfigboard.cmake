@@ -39,3 +39,7 @@ endif()
 if(NOT MICROPY_FROZEN_MANIFEST)
     set(MICROPY_FROZEN_MANIFEST ${MICROPY_PORT_DIR}/boards/tildamk6/manifest.py)
 endif()
+
+target_compile_options(${MICROPY_TARGET} PUBLIC
+    -Wno-builtin-macro-redefined
+)
