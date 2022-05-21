@@ -3,6 +3,8 @@ add_library(usermod_spng INTERFACE)
 
 #target_compile_definitions(usermod_spng INTERFACE SPNG_USE_MINIZ)
 
+target_compile_options(usermod_spng INTERFACE -mlongcalls)
+
 # Add our source files to the lib
 target_sources(usermod_spng INTERFACE
     ${CMAKE_CURRENT_LIST_DIR}/spng_wrapper.c
