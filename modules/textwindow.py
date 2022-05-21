@@ -159,6 +159,40 @@ class TextWindow:
             result.append("")
         return result
 
+    def decode_png(self, file):
+        import png
+        color565 = tidal.color565
+        reader = png.Reader(filename=file)
+        (w, h, rows, info) = reader.asRGB8()
+        maxi = (w * 3) - 2
+        buf = bytearray()
+        for row in rows:
+            i = 0
+            while i < maxi:
+                col16 = color565(row[i], row[i+1], row[i+2])
+                buf.append(col16 >> 8)
+                buf.append(col16 & 0xFF)
+                i += 3
+        return buf
+
+    def draw_png(self, file, x, y):
+        import png
+        color565 = tidal.color565
+        reader = png.Reader(filename=file)
+        (w, h, rows, info) = reader.asRGB8()
+        maxi = (w * 3) - 2
+        buf = bytearray(w * 2)
+        for row in rows:
+            i = 0
+            bufi = 0
+            while i < maxi:
+                col16 = color565(row[i], row[i+1], row[i+2])
+                buf[bufi] = (col16 >> 8)
+                buf[bufi+1] = (col16 & 0xFF)
+                i += 3
+                bufi += 2
+            self.display.blit_buffer(buf, x, y, w, 1)
+            y += 1
 
 class Menu(TextWindow):
 
