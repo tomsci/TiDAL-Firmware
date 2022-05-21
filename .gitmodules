@@ -13,3 +13,9 @@
 [submodule "micropython-micro-gui"]
 	path = micropython-micro-gui
 	url = https://github.com/peterhinch/micropython-micro-gui.git
+[submodule "libspng"]
+	path = libspng
+	url = https://github.com/randy408/libspng/
+[submodule "miniz"]
+	path = miniz
+	url = https://github.com/richgel999/miniz
