@@ -6,10 +6,11 @@ add_library(usermod_spng INTERFACE)
 target_sources(usermod_spng INTERFACE
     ${CMAKE_CURRENT_LIST_DIR}/spng_wrapper.c
     ${CMAKE_CURRENT_LIST_DIR}/../../libspng/spng/spng.c
-
+    ${CMAKE_CURRENT_LIST_DIR}/miniz.c
 )
 
 target_include_directories(usermod_spng INTERFACE
+    ${CMAKE_CURRENT_LIST_DIR}
     ${CMAKE_CURRENT_LIST_DIR}/../../libspng/spng
 )
 
@@ -21,4 +22,4 @@ target_compile_definitions(usermod_spng INTERFACE
 # Link our INTERFACE library to the usermod target.
 target_link_libraries(usermod INTERFACE usermod_spng)
 
-add_subdirectory("${CMAKE_CURRENT_LIST_DIR}/../../miniz" "${CMAKE_CURRENT_LIST_DIR}")
+#add_subdirectory("${CMAKE_CURRENT_LIST_DIR}/../../miniz" "${CMAKE_CURRENT_LIST_DIR}")
