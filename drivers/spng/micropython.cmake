@@ -15,7 +15,7 @@ target_include_directories(usermod_spng INTERFACE
 )
 
 target_compile_definitions(usermod_spng INTERFACE
-    SPNG_USE_MINIZ=1
+    -DSPNG_USE_MINIZ=1
 )
 
 
