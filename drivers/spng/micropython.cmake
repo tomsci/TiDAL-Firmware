@@ -21,4 +21,4 @@ target_compile_definitions(usermod_spng INTERFACE
 # Link our INTERFACE library to the usermod target.
 target_link_libraries(usermod INTERFACE usermod_spng)
 
-add_subdirectory("${CMAKE_CURRENT_LIST_DIR}/../../miniz")
+add_subdirectory("${CMAKE_CURRENT_LIST_DIR}/../../miniz" "${CMAKE_CURRENT_LIST_DIR}")
