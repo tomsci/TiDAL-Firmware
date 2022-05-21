@@ -14,6 +14,7 @@ target_sources(usermod_spng INTERFACE
 )
 
 target_include_directories(usermod_spng INTERFACE
+    ${CMAKE_CURRENT_LIST_DIR}
     ${CMAKE_CURRENT_LIST_DIR}/../../miniz
     ${CMAKE_CURRENT_LIST_DIR}/../../libspng/spng
 )
